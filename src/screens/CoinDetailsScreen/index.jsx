@@ -1,12 +1,23 @@
-import React from 'react';
-import {View, Text} from "react-native";
+import React from "react";
+import { View } from "react-native";
+
+
+import CoinDetailHeader from "./components/CoinDetailHeader";
+import Coin from "/Users/hiepnnguyen/CryptoTracker/assets/Crypto Tracker Assets/data/crypto.json"
+
 
 const CoinDetailsScreen = () => {
-    return (
-        <View>
-            <Text style = {{color:'white'}}>Detailed Screen Here</Text>
-        </View>
+    const {
+        image: { small },
+        name,
+        symbol,
+        market_data: { market_cap_rank },
+      } = Coin;
 
-    );
+  return (
+    <View>
+      <CoinDetailHeader image={small} marketCapRank={market_cap_rank} symbol = {symbol} />
+    </View>
+  );
 };
 export default CoinDetailsScreen;

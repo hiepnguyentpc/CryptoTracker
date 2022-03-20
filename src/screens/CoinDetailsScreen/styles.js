@@ -46,13 +46,30 @@ const styles = StyleSheet.create({
   priceChangeContainer: {
     padding: 5,
     borderRadius: 5,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   priceContainer: {
     padding: 15,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  input: {
+    color: 'white',
+    width: 130,
+    height: 40,
+    margin: 12,
+    borderBottomColor: "white",
+    borderBottomWidth: 1,
+    padding: 10,
+    fontSize: 16,
+  },
+
+  symbolStyle: {
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 20,
+    alignSelf: "center",
   },
 });
 

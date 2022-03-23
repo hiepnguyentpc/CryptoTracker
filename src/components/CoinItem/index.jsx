@@ -1,10 +1,12 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 const CoinItem = ({ marketCoin }) => {
   const {
+    id,
     name,
     current_price,
     market_cap_rank,
@@ -14,28 +16,33 @@ const CoinItem = ({ marketCoin }) => {
     image,
   } = marketCoin;
 
-  const percentageColor = price_change_percentage_24h < 0? '#ea3943' : '#16c784'
-  const upOrDown = price_change_percentage_24h < 0? "caretdown" : "caretup"
+  const navigation = useNavigation();
+
+  const percentageColor =
+    price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
+  const upOrDown = price_change_percentage_24h < 0 ? "caretdown" : "caretup";
 
   const normalizeMarketCap = (marketCap) => {
-    if (marketCap > 1_000_000_000_000){
-      return `${Math.floor(marketCap/1_000_000_000_000)} T` 
+    if (marketCap > 1_000_000_000_000) {
+      return `${Math.floor(marketCap / 1_000_000_000_000)} T`;
     }
-    if (marketCap > 1_000_000_000){
-      return `${Math.floor(marketCap/1_000_000_000)} B` 
+    if (marketCap > 1_000_000_000) {
+      return `${Math.floor(marketCap / 1_000_000_000)} B`;
     }
-    if (marketCap > 1_000_000){
-      return `${Math.floor(marketCap/1_000_000)} M` 
+    if (marketCap > 1_000_000) {
+      return `${Math.floor(marketCap / 1_000_000)} M`;
     }
-    if (marketCap > 1_000){
-      return `${Math_floor(marketCap/1_000)} K` 
+    if (marketCap > 1_000) {
+      return `${Math_floor(marketCap / 1_000)} K`;
     }
     return marketCap;
-
-  }
+  };
 
   return (
-    <View style={styles.coinContainer}>
+    <Pressable
+      style={styles.coinContainer}
+      onPress={() => navigation.navigate("CoinDetail", {coinId: id})}
+    >
       <Image
         source={{
           url: image,
@@ -62,14 +69,18 @@ const CoinItem = ({ marketCoin }) => {
             color={percentageColor}
             style={{ alignSelf: "center", marginRight: 5 }}
           />
-          <Text style={{color: percentageColor}}>{price_change_percentage_24h.toFixed(3)}%</Text>
+          <Text style={{ color: percentageColor }}>
+            {price_change_percentage_24h.toFixed(3)}%
+          </Text>
         </View>
       </View>
-      <View style={{ marginLeft: "auto", alignItems: 'flex-end'}}>
+      <View style={{ marginLeft: "auto", alignItems: "flex-end" }}>
         <Text style={styles.title}>{current_price.toFixed(2)}</Text>
-        <Text style={{color: 'white'}}>MCap {normalizeMarketCap(market_cap)}</Text>
+        <Text style={{ color: "white" }}>
+          MCap {normalizeMarketCap(market_cap)}
+        </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

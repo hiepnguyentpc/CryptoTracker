@@ -4,6 +4,8 @@ import CoinDetailHeader from "./components/CoinDetailHeader";
 import Coin from "/Users/hiepnnguyen/CryptoTracker/assets/Crypto Tracker Assets/data/crypto.json";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
+import { useRoute } from "@react-navigation/native"
+
 import {
   ChartDot,
   ChartPath,
@@ -28,6 +30,11 @@ const CoinDetailsScreen = () => {
 
   const [coinValue, setCoinValue] = useState("1");
   const [usdValue, setUSDValue] = useState(current_price.usd.toString());
+  
+  const route = useRoute();
+  const {params: {coinId}} = route;
+
+  console.log(coinId)
 
   const percentageColor =
     price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";

@@ -1,6 +1,7 @@
 # Crypto Price Tracker 
 
 Crypto-currency price tracker, implemented using React Native, CoinGecko API with Axios, Rainbow.me animated chart.
+
 (Project adapted from notJustDev. as an experiment with CoinGecko API and Rainbow.me)
 
 **Crypto-price Display** 
